@@ -1,0 +1,34 @@
+on: push
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    container: milchenko/dz_1.1
+    steps:
+      - uses: actions/checkout@v2
+      - run: make run
+  build:
+    runs-on: ubuntu-latest
+    container: milchenko/dz_1.1
+    needs: [check]
+    steps:
+      - uses: actions/checkout@v2
+      - run: make build
+  coverage:
+    runs-on: ubuntu-latest
+    container: milchenko/dz_1.1
+    needs: [build]
+    steps:
+      - uses: actions/checkout@v2
+      - run: make coverage
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          path: ./build/html
+  valgrind:
+    runs-on: ubuntu-latest
+    container: milchenko/dz_1.1
+    needs: [ build ]
+    steps:
+      - uses: actions/checkout@v2
+      - run: make valgrind_test
