@@ -41,8 +41,8 @@ TEST(FileTest, count_words) {
 TEST(DirTest, create_dir) {
   MyDir *directory = create_dir(QUOTE(PATH_TO_DIR));
 
-  const char *dir_names[4] = {"Virus:Vibrance.txt", "bohemian_rapsody.txt",
-                              "headhunter.txt", "test_file.txt"};
+  const char *dir_names[4] = {"bohemian_rapsody.txt", "Virus:Vibrance.txt",
+                              "test_file.txt", "headhunter.txt"};
 
   ASSERT_EQ(directory->_size, 4);
 
