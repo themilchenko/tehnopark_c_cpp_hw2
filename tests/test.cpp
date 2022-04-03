@@ -47,6 +47,7 @@ TEST(DirTest, create_dir) {
   ASSERT_EQ(directory->_size, 4);
 
   for (size_t i = 0; i < directory->_size; ++i) {
+    printf("%s\t%s\n", directory->_files[i], dir_names[i]);
     ASSERT_STREQ(directory->_files[i], dir_names[i]);
   }
 
