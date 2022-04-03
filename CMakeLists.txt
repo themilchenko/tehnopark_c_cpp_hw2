@@ -8,6 +8,9 @@ add_compile_definitions(DEBUG)
 
 option(SANITIZERS "Turn on sanitizers" OFF)
 
+add_definitions("-DPATH_TO_DIR=${PROJECT_SOURCE_DIR}/dump")
+add_definitions("-DPATH_TO_FILE=${PROJECT_SOURCE_DIR}/dump/test_file.txt")
+
 set(${PROJECT_NAME}_FILE_HANDLER_H ${CMAKE_SOURCE_DIR}/include/file_handler.h)
 set(${PROJECT_NAME}_FILE_HANDLER_C ${CMAKE_SOURCE_DIR}/source/file_handler.c)
 set(${PROJECT_NAME}_DIR_HANDLER_H ${CMAKE_SOURCE_DIR}/include/dir_handler.h)

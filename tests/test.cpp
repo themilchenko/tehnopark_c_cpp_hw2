@@ -6,8 +6,8 @@ extern "C" {
 #include "set.h"
 }
 
-#define PATH_TO_DIR "/home/project/dump/"
-#define PATH_TO_FILE "/home/project/dump/test_file.txt"
+#define Q(x) #x
+#define QUOTE(x) Q(x)
 
 TEST(FileTest, create_file) {
   //"/Users/admin/Tehnopark/first_sem_web/advanced_C-C++/tehnopark_c_cpp_hw2/dump/text.txt";
@@ -19,7 +19,7 @@ TEST(FileTest, create_file) {
                         "that's all for now\n"
                         "have a nice life and goodbye";
 
-  MyFile *file = create_file(PATH_TO_FILE);
+  MyFile *file = create_file(QUOTE(PATH_TO_FILE));
 
   ASSERT_STREQ(file->_buffer, text_eq);
   ASSERT_STREQ(file->_file_name, "test_file.txt");
@@ -29,7 +29,7 @@ TEST(FileTest, create_file) {
 }
 
 TEST(FileTest, count_words) {
-  MyFile *file = create_file(PATH_TO_FILE);
+  MyFile *file = create_file(QUOTE(PATH_TO_FILE));
 
   count(file, "a");
 
@@ -39,7 +39,7 @@ TEST(FileTest, count_words) {
 }
 
 TEST(DirTest, create_dir) {
-  MyDir *directory = create_dir(PATH_TO_DIR);
+  MyDir *directory = create_dir(QUOTE(PATH_TO_DIR));
 
   const char *dir_names[4] = {"Virus:Vibrance.txt", "bohemian_rapsody.txt",
                               "headhunter.txt", "test_file.txt"};
@@ -55,8 +55,8 @@ TEST(DirTest, create_dir) {
 
 TEST(Set, create_set) {
   const char *searching_word = "the";
-  MyDir *directory = create_dir(PATH_TO_DIR);
-  Set *set = create_set(PATH_TO_DIR, searching_word, 0, directory->_size);
+  MyDir *directory = create_dir(QUOTE(PATH_TO_DIR));
+  Set *set = create_set(QUOTE(PATH_TO_DIR), searching_word, 0, directory->_size);
   delete_dir(directory);
 
   print_set(set);
