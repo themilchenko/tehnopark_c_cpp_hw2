@@ -41,10 +41,14 @@ TEST(FileTest, count_words) {
 TEST(DirTest, create_dir) {
   MyDir *directory = create_dir(QUOTE(PATH_TO_DIR));
 
-  const char *dir_names[4] = {"bohemian_rapsody.txt", "Virus:Vibrance.txt",
-                              "test_file.txt", "headhunter.txt"};
+  const char *dir_names[4] = {"Virus:Vibrance.txt", "bohemian_rapsody.txt",
+                              "headhunter.txt", "test_file.txt"};
 
   ASSERT_EQ(directory->_size, 4);
+
+  for (size_t i = 0; i < directory->_size; ++i) {
+    printf("%s\n", directory->_files[i]);
+  }
 
   for (size_t i = 0; i < directory->_size; ++i) {
     printf("%s\t%s\n", directory->_files[i], dir_names[i]);
